@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alat Pengesan Gas Berbahaya | KVSP1</title>
+    
+    <!-- Font Awesome Icons (untuk icons cantik) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts - Font moden -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Floating background animation */
+        .bg-bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .bg-bubbles div {
+            position: absolute;
+            bottom: -100px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .bg-bubbles div:nth-child(1) { left: 10%; width: 60px; height: 60px; animation-duration: 15s; }
+        .bg-bubbles div:nth-child(2) { left: 20%; width: 80px; height: 80px; animation-duration: 25s; animation-delay: 2s; }
+        .bg-bubbles div:nth-child(3) { left: 35%; width: 120px; height: 120px; animation-duration: 18s; animation-delay: 5s; }
+        .bg-bubbles div:nth-child(4) { left: 50%; width: 100px; height: 100px; animation-duration: 22s; animation-delay: 1s; }
+        .bg-bubbles div:nth-child(5) { left: 70%; width: 150px; height: 150px; animation-duration: 30s; animation-delay: 3s; }
+        .bg-bubbles div:nth-child(6) { left: 85%; width: 90px; height: 90px; animation-duration: 20s; animation-delay: 4s; }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Glassmorphism effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.4);
+        }
+        
+        /* Header with gradient */
+        .main-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 40px;
+            margin: 20px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .main-header h1 {
+            font-size: 4em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .main-header p {
+            font-size: 1.4em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+            font-size: 1.1em;
+            transition: all 0.3s;
+        }
+        
+        .badge:hover {
+            background: white;
+            color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        /* Penyelia Section - Premium */
+        .penyelia-section {
+            text-align: center;
+            position: relative;
+        }
+        
+        .penyelia-section h2 {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .penyelia-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+        
+        .penyelia-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+            border: 5px solid white;
+            transition: all 0.5s;
+        }
+        
+        .penyelia-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 40px 80px rgba(102, 126, 234, 0.5);
+        }
+        
+        .penyelia-img-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+        }
+        
+        .penyelia-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 50%;
+            border: 3px solid #667eea;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            70% { transform: scale(1.1); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
+        }
+        
+        .penyelia-name {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .penyelia-role {
+            font-size: 1.3em;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .penyelia-dept {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 500;
+        }
+        
+        /* Team Cards */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .team-card:hover::before {
+            opacity: 1;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
+        }
+        
+        .team-img-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .team-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            transition: all 0.4s;
+        }
+        
+        .team-card:hover .team-img {
+            transform: scale(1.05);
+            border-color: #764ba2;
+        }
+        
+        .team-role-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        
+        .team-id {
+            background: #f0f2f5;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        /* Info Cards */
+        .section-title {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin: 60px 0 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: rgba(255,255,255,0.95);
+            padding: 35px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transition: all 0.4s;
+            backdrop-filter: blur(5px);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+        
+        .info-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .info-icon i {
+            font-size: 40px;
+            color: white;
+        }
+        
+        .info-card h3 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .info-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Table Modern */
+        .table-container {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            margin: 30px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            padding: 20px;
+            font-size: 1.1em;
+        }
+        
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Cost Table */
+        .cost-table {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 25px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .cost-row:hover {
+            background: #f0f2f5;
+            transform: translateX(10px);
+        }
+        
+        .cost-row.total {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+        
+        /* Gantt Chart Modern */
+        .gantt-container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .gantt-item {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            gap: 20px;
+        }
+        
+        .gantt-label {
+            width: 150px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .gantt-bar-wrapper {
+            flex: 1;
+            height: 50px;
+            background: #f0f2f5;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gantt-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 25px;
+            position: relative;
+            animation: slideIn 1s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { width: 0; }
+        }
+        
+        .gantt-week {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        /* Objectives Cards */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .objective-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            border-bottom: 5px solid transparent;
+            border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-image-slice: 1;
+        }
+        
+        .objective-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 5px solid #667eea;
+        }
+        
+        .objective-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            border-radius: 40px 40px 0 0;
+            padding: 60px 40px 30px;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            background-size: 200% 100%;
+            animation: gradientMove 3s linear infinite;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #a0a0ff;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-section i {
+            width: 20px;
+            color: #a0a0ff;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #a0a0a0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.5em;
+            }
+            
+            .penyelia-card {
+                padding: 30px;
+            }
+            
+            .penyelia-img-wrapper {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .penyelia-name {
+                font-size: 1.8em;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+            
+            .gantt-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .gantt-label {
+                width: auto;
+            }
+        }
+        
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            border: none;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-bubbles">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="main-header" data-aos="fade-down">
+            <h1><i class="fas fa-shield-alt"></i> GAS DETECTOR PRO</h1>
+            <p>Sistem Pengesan Gas Berbahaya di Bengkel Kimpalan KVSP1</p>
+            <div class="badge-container">
+                <span class="badge"><i class="fas fa-skull"></i> CO</span>
+                <span class="badge"><i class="fas fa-fire"></i> Asetilena</span>
+                <span class="badge"><i class="fas fa-wind"></i> Argon</span>
+            </div>
+        </header>
+        
+        <!-- PENYELIA SECTION - UTAMA ATAS -->
+        <section class="penyelia-section" data-aos="zoom-in">
+            <h2><i class="fas fa-user-tie"></i> PENYELIA PROJEK</h2>
+            <div class="penyelia-card">
+                <div class="penyelia-img-wrapper">
+                    <div class="pulse-ring"></div>
+                    <img src="CgMun.jpg" alt="Ahmad Munawwar" class="penyelia-img" onerror="this.src='https://via.placeholder.com/280x280?text=Ahmad+Munawwar'">
+                </div>
+                <h3 class="penyelia-name">AHMAD MUNAWWAR BIN ISMAIL</h3>
+                <p class="penyelia-role"><i class="fas fa-chalkboard-teacher"></i> Penyelia Projek</p>
+                <p class="penyelia-dept"><i class="fas fa-microchip"></i> Jabatan Teknologi Elektrik & Elektronik</p>
+            </div>
+        </section>
+        
+        <!-- AHLI KUMPULAN -->
+        <section data-aos="fade-up">
+            <h2 class="section-title"><i class="fas fa-users"></i> AHLI KUMPULAN</h2>
+            <div class="team-grid">
+                <!-- Dinie -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="dinie.jpg" alt="Dinie" class="team-img" onerror="this.src='https://via.placeholder.com/200x200?text=Dinie'">
+                    </div>
+                    <h3>MUHAMMAD DINIE SYAKIR SYAZWAN</h3>
+                    <p class="team-role-badge"><i class="fas fa-crown"></i> KETUA PROJEK</p>
+                    <div class="team-id">
+                        <i class="fas fa-id-card"></i> No. KP: 061128100641
+                    </div>
+                </div>
+                
+                <!-- Harith -->
+                <div class="team-card">
+                    <div class="team-img-wrapper">
+                        <img src="harith.jpg" alt="Harith" class="team-img" onerror="this.src='https://via.placeholder.com/200x200?text=Harith'">
+                    </div>
+                    <h3>MUHAMMAD HARITH HAQIM BIN JASMANI</h3>
+                    <p class="team-role-badge"><i class="fas fa-user-graduate"></i> AHLI KUMPULAN</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- INFO PROJEK -->
+        <section data-aos="fade-up">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> MAKLUMAT PROJEK</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Program</h3>
+                    <p>Final Year Project<br><strong>DKA3042</strong></p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>Institusi</h3>
+                    <p>Kolej Vokasional<br>Sungai Petani 1</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <h3>Tahun</h3>
+                    <p>Sesi 2024<br>Semester 4</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- PENGENALAN -->
+        <section class="glass-card" data-aos="fade-right">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;"><i class="fas fa-book-open"></i> PENGENALAN PROJEK</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">Keselamatan di bengkel kimpalan merupakan aspek utama yang tidak boleh diabaikan kerana ia melibatkan pelbagai faktor berisiko tinggi. Proses kimpalan menggunakan haba yang sangat tinggi dan memerlukan penggunaan gas tertentu seperti:</p>
+            
+            <div class="info-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div style="background: linear-gradient(135deg, #ff6b6b, #ee5253); padding: 20px; border-radius: 20px; color: white;">
+                    <i class="fas fa-skull" style="font-size: 40px; margin-bottom: 10px;"></i>
+                    <h3 style="color: white;">Karbon Monoksida</h3>
+                    <p>Tidak berbau, tidak berwarna, sangat beracun</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #feca57, #ff9f43); padding: 20px; border-radius: 20px; color: white;">
+                    <i class="fas fa-fire" style="font-size: 40px; margin-bottom: 10px;"></i>
+                    <h3 style="color: white;">Asetilena</h3>
+                    <p>Mudah terbakar, boleh menyebabkan letupan</p>
+                </div>
+                <div style="background: linear-gradient(135deg, #54a0ff, #2e86de); padding: 20px; border-radius: 20px; color: white;">
+                    <i class="fas fa-wind" style="font-size: 40px; margin-bottom: 10px;"></i>
+                    <h3 style="color: white;">Argon</h3>
+                    <p>Boleh menyebabkan sesak nafas dalam ruang tertutup</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- MASALAH -->
+        <section class="glass-card" data-aos="fade-left">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;"><i class="fas fa-exclamation-triangle"></i> PENYATAAN MASALAH</h2>
+            
+            <div class="info-grid">
+                <div style="background: #fff3cd; padding: 30px; border-radius: 20px; border-left: 10px solid #ffc107;">
+                    <i class="fas fa-times-circle" style="font-size: 40px; color: #856404; margin-bottom: 15px;"></i>
+                    <h3 style="color: #856404;">Tiada Pengesanan Cepat</h3>
+                    <p>Tidak dapat mengesan gas CO, asetilena, argon dengan cepat</p>
+                </div>
+                
+                <div style="background: #ffe0e0; padding: 30px; border-radius: 20px; border-left: 10px solid #dc3545;">
+                    <i class="fas fa-bell-slash" style="font-size: 40px; color: #721c24; margin-bottom: 15px;"></i>
+                    <h3 style="color: #721c24;">Tiada Sistem Amaran</h3>
+                    <p>Tiada notifikasi segera jika berlaku kebocoran gas</p>
+                </div>
+                
+                <div style="background: #e0e7ff; padding: 30px; border-radius: 20px; border-left: 10px solid #004085;">
+                    <i class="fas fa-coins" style="font-size: 40px; color: #004085; margin-bottom: 15px;"></i>
+                    <h3 style="color: #004085;">Kos Tinggi</h3>
+                    <p>Peralatan komersial mahal untuk institusi pendidikan</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- OBJEKTIF -->
+        <section data-aos="zoom-in">
+            <h2 class="section-title"><i class="fas fa-bullseye"></i> OBJEKTIF PROJEK</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-number">1</div>
+                    <h3>Pengesanan Cepat</h3>
+                    <p>Mengesan gas CO, asetilena dan argon dengan pantas</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">2</div>
+                    <h3>Sistem Amaran Awal</h3>
+                    <p>Notifikasi segera melalui buzzer dan lampu LED</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">3</div>
+                    <h3>Kos Efektif</h3>
+                    <p>Sistem kos efektif untuk bengkel kecil/sederhana</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SKOP PROJEK -->
+        <section class="glass-card" data-aos="fade-up">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;"><i class="fas fa-arrows-alt"></i> SKOP PROJEK</h2>
+            
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Peranan</th>
+                        <th>Jawatan</th>
+                        <th>Tanggungjawab</th>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-user-tie"></i> Admin</strong></td>
+                        <td>Ketua Jabatan</td>
+                        <td>Kelulusan, sokongan & pemantauan</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-user-cog"></i> Co-Admin</strong></td>
+                        <td>Ketua Program & Ketua Bengkel</td>
+                        <td>Penyelia pelaksanaan sistem</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-chalkboard-teacher"></i> Pengguna Utama</strong></td>
+                        <td>Pensyarah Kimpalan</td>
+                        <td>Memantau keselamatan bengkel</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-user-graduate"></i> Pengguna Akhir</strong></td>
+                        <td>Pelajar</td>
+                        <td>Menjalankan aktiviti kimpalan</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        
+        <!-- ANGGARAN KOS -->
+        <section class="glass-card" data-aos="fade-up">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;"><i class="fas fa-money-bill-wave"></i> ANGGARAN KOS</h2>
+            
+            <div class="cost-table">
+                <div class="cost-row">
+                    <span><i class="fas fa-microchip"></i> Sensor Gas (MQ-2/MQ-7)</span>
+                    <span><strong>RM10.00</strong></span>
+                </div>
+                <div class="cost-row">
+                    <span><i class="fas fa-lightbulb"></i> LED Light</span>
+                    <span><strong>RM1.50</strong></span>
+                </div>
+                <div class="cost-row">
+                    <span><i class="fas fa-volume-up"></i> Buzzer</span>
+                    <span><strong>RM3.00</strong></span>
+                </div>
+                <div class="cost-row">
+                    <span><i class="fas fa-wifi"></i> ESP8266 (WiFi Module)</span>
+                    <span><strong>RM30.00</strong></span>
+                </div>
+                <div class="cost-row">
+                    <span><i class="fas fa-plug"></i> Dupont Line Wire</span>
+                    <span><strong>RM4.00</strong></span>
+                </div>
+                <div class="cost-row">
+                    <span><i class="fas fa-toolbox"></i> ToolBox</span>
+                    <span><strong>RM10.00</strong></span>
+                </div>
+                <div class="cost-row total">
+                    <span><i class="fas fa-calculator"></i> JUMLAH KESELURUHAN</span>
+                    <span><strong>RM58.50</strong></span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CARTA GANTT -->
+        <section class="glass-card" data-aos="fade-up">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;"><i class="fas fa-chart-bar"></i> CARTA GANTT (16 MINGGU)</h2>
+            
+            <div class="gantt-container">
+                <div class="gantt-item">
+                    <span class="gantt-label"><i class="fas fa-pencil-ruler"></i> Perancangan</span>
+                    <div class="gantt-bar-wrapper">
+                        <div class="gantt-bar" style="width: 25%;">
+                            <span class="gantt-week">Minggu 1-4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gantt-item">
+                    <span class="gantt-label"><i class="fas fa-draw-polygon"></i> Reka Bentuk</span>
+                    <div class="gantt-bar-wrapper">
+                        <div class="gantt-bar" style="width: 25%; background: linear-gradient(90deg, #28a745, #20c997);">
+                            <span class="gantt-week">Minggu 5-8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gantt-item">
+                    <span class="gantt-label"><i class="fas fa-code"></i> Pembangunan</span>
+                    <div class="gantt-bar-wrapper">
+                        <div class="gantt-bar" style="width: 25%; background: linear-gradient(90deg, #ffc107, #fd7e14);">
+                            <span class="gantt-week">Minggu 9-12</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gantt-item">
+                    <span class="gantt-label"><i class="fas fa-vial"></i> Pengujian</span>
+                    <div class="gantt-bar-wrapper">
+                        <div class="gantt-bar" style="width: 12.5%; background: linear-gradient(90deg, #dc3545, #c82333);">
+                            <span class="gantt-week">Minggu 13-14</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gantt-item">
+                    <span class="gantt-label"><i class="fas fa-rocket"></i> Pelaksanaan</span>
+                    <div class="gantt-bar-wrapper">
+                        <div class="gantt-bar" style="width: 12.5%; background: linear-gradient(90deg, #6f42c1, #6610f2);">
+                            <span class="gantt-week">Minggu 15-16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- JANGKAAN HASIL -->
+        <section class="glass-card" data-aos="fade-up">
+            <h2 style="font-size: 2.5em; margin-bottom: 30px;"><i class="fas fa-check-circle"></i> JANGKAAN HASIL</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>Pengesanan gas tepat</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>Amaran buzzer & LED</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>Paparan bacaan langsung</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>Response < 3 saat</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>Operasi 24/7</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>Reka bentuk mudah dibina</span>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 30px;"></i>
+                    <span>IoT ready</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FOOTER PREMIUM -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-shield-alt"></i> GAS DETECTOR PRO</h3>
+                    <p>Sistem pengesan gas berbahaya untuk bengkel kimpalan yang lebih selamat.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-users"></i> KUMPULAN</h3>
+                    <ul>
+                        <li><i class="fas fa-user-tie"></i> Ahmad Munawwar (Penyelia)</li>
+                        <li><i class="fas fa-crown"></i> Dinie Syakir (Ketua)</li>
+                        <li><i class="fas fa-user"></i> Harith Haqim (Ahli)</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Pautan</h3>
+                    <ul>
+                        <li><i class="fas fa-file"></i> Kertas Cadangan</li>
+                        <li><i class="fas fa-image"></i> Gambar Projek</li>
+                        <li><i class="fas fa-video"></i> Demo Video</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p><i class="far fa-copyright"></i> 2024 Kolej Vokasional Sungai Petani 1. Hak Cipta Terpelihara.</p>
+                <p style="margin-top: 10px; font-size: 0.9em;">Kementerian Pendidikan Malaysia • DKA3042 • Final Year Project</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
